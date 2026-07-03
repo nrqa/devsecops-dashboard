@@ -1,0 +1,27 @@
+name: Zero Trust Security Gate
+
+on:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Anchore Syft (SBOM Generation)
+        uses: anchore/sbom-action@v0
+        with:
+          path: .
+          format: cyclonedx-json
+          output-file: cyclonedx-sbom.json
+
+      - name: Run Aqua Trivy Vulnerability Scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          input: 'cyclonedx-sbom.json'
+          format: 'table'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1'

@@ -1,0 +1,24 @@
+{
+  "ArtifactName": "mmu-vulnerable-app",
+  "Results": [
+    {
+      "Target": "package.json",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2024-1234",
+          "PkgName": "express",
+          "InstalledVersion": "4.16.0",
+          "Severity": "CRITICAL",
+          "CVSS": 9.8
+        },
+        {
+          "VulnerabilityID": "CVE-2023-4567",
+          "PkgName": "lodash",
+          "InstalledVersion": "4.17.15",
+          "Severity": "MEDIUM",
+          "CVSS": 5.3
+        }
+      ]
+    }
+  ]
+}
